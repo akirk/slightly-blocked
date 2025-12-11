@@ -1,3 +1,6 @@
+@use "../mixins/mixins-master" as *;
+@use "../base/variables" as *;
+
 figcaption.wp-element-caption {
 	margin-bottom: 2.5em;
 	max-width: 100%;

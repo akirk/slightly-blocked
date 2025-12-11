@@ -1,3 +1,5 @@
+@use "../base/variables" as *;
+
 textarea#comment {
     height: 120px;
 }

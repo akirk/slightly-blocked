@@ -1,3 +1,5 @@
+@use "../base/variables" as *;
+
 .sticky {
 	display: block;
     background-color: $color__lightgray;

@@ -1,3 +1,5 @@
+@use "../base/variables" as *;
+
 .site-header {
     border-bottom: 1px solid var(--color-border-light);
 }
@@ -87,7 +89,7 @@
 .pageBannerImage {
     position: relative;
     min-height: 240px;
-    background-color: $color--lightgray;
+    background-color: $color__lightgray;
     overflow: hidden;
 }
 

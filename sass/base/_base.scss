@@ -1,3 +1,6 @@
+@use "../mixins/mixins-master" as *;
+@use "variables" as *;
+
 html {
 	box-sizing: border-box;
 }
@@ -109,5 +112,3 @@ dd {
   margin-top: 52px;
 }
 
-@import "typography";
-@import "links";

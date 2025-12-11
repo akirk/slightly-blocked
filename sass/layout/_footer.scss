@@ -1,3 +1,5 @@
+@use "../base/variables" as *;
+
 .site-footer {
     border-top: 1px solid $color__lightgray;
     margin-top: 2em;

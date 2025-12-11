@@ -60,36 +60,36 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     # Utility
 
 --------------------------------------------------------------*/
-@import "mixins/mixins-master";
+@use "mixins/mixins-master" as *;
+@use "base/variables" as *;
 
-@import "base/variables";
-@import "base/normalize";
-@import "base/base";
-@import "base/links";
-@import "base/typography";
+@use "base/normalize";
+@use "base/base";
+@use "base/typography";
+@use "base/links";
 
-@import "components/navigation";
-@import "components/buttons";
-@import "components/forms";
-@import "components/widgets";
-@import "components/comments";
-@import "components/dark-mode";
+@use "components/navigation";
+@use "components/buttons";
+@use "components/forms";
+@use "components/widgets";
+@use "components/comments";
+@use "components/dark-mode";
 
-@import "blocks/photo";
-@import "blocks/button";
-@import "blocks/quote";
+@use "blocks/photo";
+@use "blocks/button";
+@use "blocks/quote";
 
-@import "layout/header";
-@import "layout/footer";
-@import "layout/posts-and-pages";
-@import "layout/woocommerce";
+@use "layout/header";
+@use "layout/footer";
+@use "layout/posts-and-pages";
+@use "layout/woocommerce";
 
-@import "media/captions";
-@import "media/galleries";
-@import "media/media";
+@use "media/captions";
+@use "media/galleries";
+@use "media/media";
 
-@import "modules/accessibility";
-@import "modules/alignments";
-@import "modules/clearings";
-@import "modules/infinite-scroll";
-@import "modules/utility";
+@use "modules/accessibility";
+@use "modules/alignments";
+@use "modules/clearings";
+@use "modules/infinite-scroll";
+@use "modules/utility";

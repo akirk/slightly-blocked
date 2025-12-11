@@ -1,3 +1,6 @@
+@use "../mixins/mixins-master" as *;
+@use "variables" as *;
+
 h1, h2, h3, h4, h5, h6, .read-next span {
 	clear: both;
     padding: 0;
@@ -19,7 +22,19 @@ h1 {
     margin-top: 0;
 }
 
-h2, h2, h3, h4, h5, h6, .read-next span {
+h2 {
+    @include font-size(1.75);
+}
+
+h3 {
+    @include font-size(1.375);
+}
+
+h4 {
+    @include font-size(1.125);
+}
+
+h2, h3, h4, h5, h6, .read-next span {
     margin: 0 0 .5em 0;
 }
 
