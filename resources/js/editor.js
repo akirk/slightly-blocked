@@ -13,15 +13,15 @@ registerBlockVariation('core/button', {
 	),
 	keywords: ['button', 'toggle', 'light', 'dark'],
 	attributes: {
-		className: 'toggle-color-scheme',
+		className: 'is-style-outline toggle-color-scheme',
 		tagName: 'button',
 		text: `<span class="screen-reader-text">${__('Toggle Color Scheme', 'slightly')}</span>`
 	},
-	isActive: (blockAttributes, variationAttributes) => {
+	isActive: (blockAttributes) => {
 		const className = blockAttributes.className || '';
 		const tagName = blockAttributes.tagName || '';
 
-		return className.split(' ').includes(variationAttributes.className)
-			&& variationAttributes.tagName === tagName;
+		return className.split(' ').includes('toggle-color-scheme')
+			&& tagName === 'button';
 	}
 });

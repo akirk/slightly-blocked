@@ -174,28 +174,6 @@ function slightly_render_button( string $content, array $block ) {
 }
 
 /**
- * Enqueue block assets.
- */
-add_action( 'init', 'slightly_block_assets' );
-
-function slightly_block_assets() {
-	$asset_path = get_theme_file_path( 'public/css/core-button.asset.php' );
-	if ( ! file_exists( $asset_path ) ) {
-		return;
-	}
-
-	$asset = include $asset_path;
-
-	wp_enqueue_block_style( 'core/button', array(
-		'handle' => 'slightly-core-button',
-		'src'    => get_theme_file_uri( 'public/css/core-button.css' ),
-		'path'   => get_theme_file_path( 'public/css/core-button.css' ),
-		'deps'   => $asset['dependencies'],
-		'ver'    => $asset['version'],
-	) );
-}
-
-/**
  * Enqueue editor assets.
  */
 add_action( 'enqueue_block_editor_assets', 'slightly_editor_assets' );

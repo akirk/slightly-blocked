@@ -4,14 +4,10 @@
   "description": "Slightly WordPress block theme",
   "scripts": {
     "start": "wp-scripts start --webpack-src-dir=resources --output-path=public --experimental-modules",
-    "build": "wp-scripts build --webpack-src-dir=resources --output-path=public --experimental-modules",
-    "build:css": "sass -s compressed sass/style.scss:style.css",
-    "watch:css": "sass --watch sass/style.scss:style.css"
+    "build": "wp-scripts build --webpack-src-dir=resources --output-path=public --experimental-modules"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^30.0.0",
-    "sass": "^1.69.0",
-    "webpack-remove-empty-scripts": "^1.0.4"
+    "@wordpress/scripts": "^30.0.0"
   },
   "dependencies": {
     "@wordpress/blocks": "^14.0.0",
