@@ -1,7 +1,7 @@
 {
-  "name": "slightly",
-  "version": "2.0.0",
-  "description": "Slightly WordPress block theme",
+  "name": "slightly-blocked",
+  "version": "1.0.0",
+  "description": "A minimal, clean, and fully-opinionated WordPress block theme.",
   "scripts": {
     "start": "wp-scripts start --webpack-src-dir=resources --output-path=public --experimental-modules",
     "build": "wp-scripts build --webpack-src-dir=resources --output-path=public --experimental-modules"
