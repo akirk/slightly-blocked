@@ -1,188 +1,232 @@
 <?php
 /**
- * Slightly functions and definitions
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ * Slightly theme functions and definitions
  *
  * @package slightly
  */
 
-if ( ! function_exists( 'slightly_setup' ) ) :
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
  */
+add_action( 'after_setup_theme', 'slightly_setup' );
+
 function slightly_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Slightly, use a find and replace
-	 * to change 'slightly' to the name of your theme in all the template files.
-	 */
 	load_theme_textdomain( 'slightly', get_template_directory() . '/languages' );
-
-	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
 	add_theme_support( 'title-tag' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
 	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'menu-1' => esc_html__( 'Primary', 'slightly' ),
-		'footer' => esc_html__( 'Footer', 'slightly' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
 	add_theme_support( 'html5', array(
 		'search-form',
 		'comment-form',
 		'comment-list',
 		'gallery',
 		'caption',
+		'style',
+		'script',
 	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'slightly_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
-
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-    
-    /**
-     * Add theme support for custom logo in header
-     */
-    add_theme_support( 'custom-logo' );
-  
-    // Suport for wide alignment in Gutenberg
-    add_theme_support( 'align-wide' );
-
-    // Add editor styles support
-    add_theme_support( 'editor-styles' );
-    add_editor_style( 'style.css' );
-
-    add_filter( 'query_loop_block_query_vars', function( $query, $block ) {
-	    if ( empty($block->context['query']['taxQuery']['post_format'])) { 
-		    $query['tax_query'] = array(
-			    array(
-				    'taxonomy' => 'post_format',
-				    'operator' => 'NOT EXISTS',
-			    ),
-		    );
-	    }
-	    return $query;
-    }, 10, 2);
-
+	add_theme_support( 'custom-logo' );
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'style.css' );
 }
-endif;
-add_action( 'after_setup_theme', 'slightly_setup' );
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *:sp
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function slightly_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'slightly_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'slightly_content_width', 0 );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function slightly_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'slightly' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'slightly' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-}
-add_action( 'widgets_init', 'slightly_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function slightly_scripts() {
-	wp_enqueue_style( 'slightly-flexboxgrid', get_template_directory_uri() . '/css/flexboxgrid.min.css' );
-	wp_enqueue_style( 'slightly-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'slightly-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20240319', true );
-
-	wp_enqueue_script( 'slightly-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'slightly-dark-mode', get_template_directory_uri() . '/js/dark-mode.js', array(), '20240929', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
 add_action( 'wp_enqueue_scripts', 'slightly_scripts' );
 
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Remove the prefix from the category title if user has setting on.
- */
-function slightly_prefix_category_title( $title ) {
-    if ( is_category() ) {
-      if( get_theme_mod( 'hide_category_prefix' ) == 1) {
-        $title = single_cat_title( '', false );
-      }
-    }
-    return $title;
+function slightly_scripts() {
+	wp_enqueue_style( 'slightly-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 }
-add_filter( 'get_the_archive_title', 'slightly_prefix_category_title' );
 
-function restrict_rest_builtin_endpoints_for_guests( $errors ) {
+/**
+ * Register user meta for color scheme preference.
+ */
+add_action( 'init', 'slightly_register_user_meta' );
+
+function slightly_register_user_meta() {
+	$sanitize = fn( $value ) => in_array( $value, [ 'light', 'dark' ], true ) ? $value : '';
+
+	register_meta( 'user', 'slightly-color-scheme', array(
+		'label'             => __( 'Color Scheme', 'slightly' ),
+		'description'       => __( 'Stores the preferred color scheme for the site.', 'slightly' ),
+		'default'           => '',
+		'sanitize_callback' => $sanitize,
+		'show_in_rest'      => true,
+		'single'            => true,
+		'type'              => 'string',
+	) );
+}
+
+/**
+ * Get the current color scheme preference.
+ */
+function slightly_get_color_scheme() {
+	$key           = 'slightly-color-scheme';
+	$valid_schemes = array( 'light', 'dark' );
+
+	if ( is_user_logged_in() ) {
+		$scheme = get_user_meta( get_current_user_id(), $key, true );
+
+		if ( $scheme && in_array( $scheme, $valid_schemes, true ) ) {
+			return $scheme;
+		}
+	}
+
+	if ( isset( $_COOKIE[ $key ] ) ) {
+		$scheme = sanitize_key( wp_unslash( $_COOKIE[ $key ] ) );
+
+		if ( $scheme && in_array( $scheme, $valid_schemes, true ) ) {
+			return $scheme;
+		}
+	}
+
+	return 'light dark';
+}
+
+/**
+ * Check if the current color scheme is dark.
+ */
+function slightly_is_dark_scheme() {
+	$scheme = slightly_get_color_scheme();
+
+	return match ( $scheme ) {
+		'dark'  => true,
+		'light' => false,
+		default => null,
+	};
+}
+
+/**
+ * Add interactivity support to the Button block.
+ */
+add_filter( 'block_type_metadata_settings', 'slightly_block_type_metadata_settings' );
+
+function slightly_block_type_metadata_settings( array $settings ) {
+	if ( 'core/button' === $settings['name'] ) {
+		$settings['supports']['interactivity'] = true;
+	}
+
+	return $settings;
+}
+
+/**
+ * Filter the Button block to add dark mode toggle functionality.
+ */
+add_filter( 'render_block_core/button', 'slightly_render_button', 10, 2 );
+
+function slightly_render_button( string $content, array $block ) {
+	$processor = new WP_HTML_Tag_Processor( $content );
+
+	// Determine if this is a light/dark toggle button.
+	if (
+		! $processor->next_tag( array( 'class_name' => 'toggle-color-scheme' ) )
+		|| ! $processor->next_tag( 'button' )
+	) {
+		return $processor->get_updated_html();
+	}
+
+	// Add interactivity directives to the <button>.
+	$attr = array(
+		'data-wp-interactive'           => 'slightly/color-scheme',
+		'data-wp-on--click'             => 'actions.toggle',
+		'data-wp-init'                  => 'callbacks.init',
+		'data-wp-watch'                 => 'callbacks.updateScheme',
+		'data-wp-bind--aria-pressed'    => 'state.isDark',
+		'data-wp-class--is-dark-scheme' => 'state.isDark',
+	);
+
+	foreach ( $attr as $name => $value ) {
+		$processor->set_attribute( $name, $value );
+	}
+
+	// Set the initial interactivity state.
+	wp_interactivity_state( 'slightly/color-scheme', array(
+		'colorScheme'  => slightly_get_color_scheme(),
+		'isDark'       => slightly_is_dark_scheme(),
+		'userId'       => get_current_user_id(),
+		'name'         => 'slightly-color-scheme',
+		'cookiePath'   => COOKIEPATH,
+		'cookieDomain' => COOKIE_DOMAIN,
+	) );
+
+	// Enqueue scripts.
+	if ( is_user_logged_in() ) {
+		wp_enqueue_script( 'wp-api-fetch' );
+	}
+
+	$script_path = get_theme_file_path( 'public/js/color-scheme.asset.php' );
+	if ( file_exists( $script_path ) ) {
+		$script = include $script_path;
+
+		wp_enqueue_script_module(
+			'slightly-color-scheme',
+			get_theme_file_uri( 'public/js/color-scheme.js' ),
+			$script['dependencies'],
+			$script['version']
+		);
+	}
+
+	return $processor->get_updated_html();
+}
+
+/**
+ * Enqueue block assets.
+ */
+add_action( 'init', 'slightly_block_assets' );
+
+function slightly_block_assets() {
+	$asset_path = get_theme_file_path( 'public/css/core-button.asset.php' );
+	if ( ! file_exists( $asset_path ) ) {
+		return;
+	}
+
+	$asset = include $asset_path;
+
+	wp_enqueue_block_style( 'core/button', array(
+		'handle' => 'slightly-core-button',
+		'src'    => get_theme_file_uri( 'public/css/core-button.css' ),
+		'path'   => get_theme_file_path( 'public/css/core-button.css' ),
+		'deps'   => $asset['dependencies'],
+		'ver'    => $asset['version'],
+	) );
+}
+
+/**
+ * Enqueue editor assets.
+ */
+add_action( 'enqueue_block_editor_assets', 'slightly_editor_assets' );
+
+function slightly_editor_assets() {
+	$script_path = get_theme_file_path( 'public/js/editor.asset.php' );
+	if ( ! file_exists( $script_path ) ) {
+		return;
+	}
+
+	$script = include $script_path;
+
+	wp_enqueue_script(
+		'slightly-editor',
+		get_theme_file_uri( 'public/js/editor.js' ),
+		$script['dependencies'],
+		$script['version'],
+		true
+	);
+}
+
+/**
+ * Restrict REST API endpoints for guests (security).
+ */
+add_filter( 'rest_authentication_errors', 'slightly_restrict_rest_endpoints' );
+
+function slightly_restrict_rest_endpoints( $errors ) {
 	if ( is_wp_error( $errors ) ) {
 		return $errors;
 	}
+
 	if ( ! is_user_logged_in() ) {
 		$restricted_endpoints = array(
 			'/wp/v2/media',
@@ -190,7 +234,7 @@ function restrict_rest_builtin_endpoints_for_guests( $errors ) {
 		);
 
 		$request_uri = $_SERVER['REQUEST_URI'];
-		$prefix = '/' . rest_get_url_prefix();
+		$prefix      = '/' . rest_get_url_prefix();
 
 		foreach ( $restricted_endpoints as $endpoint ) {
 			if ( strpos( $request_uri, $prefix . $endpoint ) === 0 ) {
@@ -201,6 +245,3 @@ function restrict_rest_builtin_endpoints_for_guests( $errors ) {
 
 	return $errors;
 }
-
-add_filter( 'rest_authentication_errors', 'restrict_rest_builtin_endpoints_for_guests' );
-

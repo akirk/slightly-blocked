@@ -1,0 +1,52 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"site-content","layout":{"type":"constrained"}} -->
+<main class="wp-block-group site-content">
+	<!-- wp:group {"className":"row row--index","layout":{"type":"default"}} -->
+	<div class="wp-block-group row row--index">
+		<!-- wp:query-title {"type":"search","className":"page-title"} /-->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template -->
+			<!-- wp:group {"tagName":"article","className":"hentry","layout":{"type":"default"}} -->
+			<article class="wp-block-group hentry">
+				<!-- wp:group {"className":"entry-header","layout":{"type":"default"}} -->
+				<div class="wp-block-group entry-header">
+					<!-- wp:post-title {"level":2,"isLink":true,"className":"entry-title"} /-->
+					<!-- wp:group {"className":"entry-meta","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+					<div class="wp-block-group entry-meta">
+						<!-- wp:post-date /-->
+					</div>
+					<!-- /wp:group -->
+				</div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"className":"entry-content","layout":{"type":"default"}} -->
+				<div class="wp-block-group entry-content">
+					<!-- wp:post-excerpt /-->
+				</div>
+				<!-- /wp:group -->
+			</article>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+			<!-- wp:query-pagination-previous /-->
+			<!-- wp:query-pagination-next /-->
+		<!-- /wp:query-pagination -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>No results found. Please try a different search term.</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:search {"label":"Search","buttonText":"Search"} /-->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

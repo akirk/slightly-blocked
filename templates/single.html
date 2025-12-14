@@ -1,0 +1,80 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"site-content","layout":{"type":"constrained"}} -->
+<main class="wp-block-group site-content">
+	<!-- wp:group {"className":"row row--index","layout":{"type":"default"}} -->
+	<div class="wp-block-group row row--index">
+		<!-- wp:group {"tagName":"article","className":"hentry","layout":{"type":"default"}} -->
+		<article class="wp-block-group hentry">
+			<!-- wp:group {"className":"entry-header","layout":{"type":"default"}} -->
+			<div class="wp-block-group entry-header">
+				<!-- wp:post-title {"level":1,"className":"entry-title"} /-->
+				<!-- wp:group {"className":"entry-meta","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group entry-meta">
+					<!-- wp:post-date /-->
+				</div>
+				<!-- /wp:group -->
+			</div>
+			<!-- /wp:group -->
+
+			<!-- wp:group {"className":"entry-content","layout":{"type":"default"}} -->
+			<div class="wp-block-group entry-content">
+				<!-- wp:post-content /-->
+			</div>
+			<!-- /wp:group -->
+
+			<!-- wp:group {"className":"entry-footer","layout":{"type":"default"}} -->
+			<div class="wp-block-group entry-footer">
+				<!-- wp:post-terms {"term":"category","className":"cat-links"} /-->
+				<!-- wp:post-terms {"term":"post_tag","className":"tags-links"} /-->
+			</div>
+			<!-- /wp:group -->
+		</article>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"read-next","layout":{"type":"default"}} -->
+		<div class="wp-block-group read-next">
+			<!-- wp:paragraph {"className":"read-next-label"} -->
+			<p class="read-next-label"><span>Read this next</span></p>
+			<!-- /wp:paragraph -->
+			<!-- wp:query {"queryId":2,"query":{"perPage":1,"pages":1,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+			<div class="wp-block-query">
+				<!-- wp:post-template -->
+					<!-- wp:post-title {"level":2,"isLink":true} /-->
+				<!-- /wp:post-template -->
+			</div>
+			<!-- /wp:query -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:comments -->
+		<div class="wp-block-comments">
+			<!-- wp:comments-title /-->
+			<!-- wp:comment-template -->
+				<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group">
+					<!-- wp:avatar {"size":48} /-->
+					<!-- wp:group {"layout":{"type":"default"}} -->
+					<div class="wp-block-group">
+						<!-- wp:comment-author-name /-->
+						<!-- wp:comment-date /-->
+						<!-- wp:comment-content /-->
+						<!-- wp:comment-reply-link /-->
+					</div>
+					<!-- /wp:group -->
+				</div>
+				<!-- /wp:group -->
+			<!-- /wp:comment-template -->
+			<!-- wp:comments-pagination -->
+				<!-- wp:comments-pagination-previous /-->
+				<!-- wp:comments-pagination-next /-->
+			<!-- /wp:comments-pagination -->
+			<!-- wp:post-comments-form /-->
+		</div>
+		<!-- /wp:comments -->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

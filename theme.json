@@ -1,0 +1,163 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"color": {
+			"custom": false,
+			"palette": [
+				{
+					"slug": "base",
+					"color": "light-dark(#ffffff, #1a1a1a)",
+					"name": "Base"
+				},
+				{
+					"slug": "base-2",
+					"color": "light-dark(#eeeeee, #2d2d2d)",
+					"name": "Base / Two"
+				},
+				{
+					"slug": "contrast",
+					"color": "light-dark(#404040, #e0e0e0)",
+					"name": "Contrast"
+				},
+				{
+					"slug": "contrast-2",
+					"color": "light-dark(#6f6f6f, #b0b0b0)",
+					"name": "Contrast / Two"
+				},
+				{
+					"slug": "contrast-3",
+					"color": "light-dark(#333333, #f0f0f0)",
+					"name": "Contrast / Three"
+				},
+				{
+					"slug": "border",
+					"color": "light-dark(#d6d6d6, #404040)",
+					"name": "Border"
+				},
+				{
+					"slug": "border-light",
+					"color": "light-dark(#eeeeee, #2d2d2d)",
+					"name": "Border Light"
+				},
+				{
+					"slug": "highlight",
+					"color": "light-dark(#fff9c0, #3a3a1a)",
+					"name": "Highlight"
+				}
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+					"slug": "system",
+					"name": "System"
+				},
+				{
+					"fontFamily": "Monaco, Consolas, 'Andale Mono', 'DejaVu Sans Mono', monospace",
+					"slug": "monospace",
+					"name": "Monospace"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "small",
+					"size": "14px",
+					"name": "Small"
+				},
+				{
+					"slug": "medium",
+					"size": "16px",
+					"name": "Medium"
+				},
+				{
+					"slug": "large",
+					"size": "22px",
+					"name": "Large"
+				},
+				{
+					"slug": "x-large",
+					"size": "28px",
+					"name": "Extra Large"
+				},
+				{
+					"slug": "xx-large",
+					"size": "38px",
+					"name": "Huge"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "640px",
+			"wideSize": "1200px"
+		},
+		"spacing": {
+			"units": ["px", "em", "rem", "%", "vw", "vh"]
+		},
+		"useRootPaddingAwareAlignments": true
+	},
+	"styles": {
+		"css": ":root { color-scheme: light dark; }",
+		"color": {
+			"background": "var(--wp--preset--color--base)",
+			"text": "var(--wp--preset--color--contrast)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--system)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"lineHeight": "1.8"
+		},
+		"spacing": {
+			"padding": {
+				"left": "30px",
+				"right": "30px"
+			}
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--contrast-3)"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--xx-large)",
+					"lineHeight": "1.3"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--x-large)",
+					"lineHeight": "1.4"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)",
+					"lineHeight": "1.4"
+				}
+			}
+		}
+	},
+	"templateParts": [
+		{
+			"name": "header",
+			"title": "Header",
+			"area": "header"
+		},
+		{
+			"name": "footer",
+			"title": "Footer",
+			"area": "footer"
+		}
+	],
+	"customTemplates": [
+		{
+			"name": "blank",
+			"title": "Blank",
+			"postTypes": ["page", "post"]
+		}
+	]
+}

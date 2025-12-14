@@ -1,85 +1,17 @@
-# -----------------------------------------------------------------
-# .gitignore for WordPress @salcode
-# ver 20160309
-#
-# From the root of your project run
-# curl -O https://gist.githubusercontent.com/salcode/b515f520d3f8207ecd04/raw/.gitignore
-# to download this file
-#
-# By default all files are ignored.  You'll need to whitelist
-# any mu-plugins, plugins, or themes you want to include in the repo.
-#
-# To ignore uncommitted changes in a file that is already tracked, use 
-# git update-index --assume-unchanged
-#
-# To stop tracking a file that is currently tracked, use 
-# git rm --cached
-#
-# Change Log:
-# 20160309 Added favicon files as whitelisted files
-# 20150302 Added composer.json as a whitelisted file
-# 20150227 Created as fork of https://gist.github.com/salcode/9940509,
-#   this version ignores all files by default
-# -----------------------------------------------------------------
-
-
-# ignore all files starting with . or ~
-.*
-~*
-
-# ignore node dependency directories (used by grunt)
+# Dependencies
 node_modules/
-Gruntfile.js
-style.css.map
-woocommerce.php
-js/global.js
-js/global.min.js
-package.json
 
-# ignore OS generated files
-ehthumbs.db
+# Build output
+public/
+
+# OS files
+.DS_Store
 Thumbs.db
 
-# ignore log files and databases
+# Editor files
+*.swp
+*.swo
+*~
+
+# Logs
 *.log
-*.sql
-*.sqlite
-
-# ignore compiled files
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# ignore packaged files
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# -------------------------
-# BEGIN Whitelisted Files
-# -------------------------
-
-# track these files, if they exist
-!.gitignore
-!.editorconfig
-!README.md
-!CHANGELOG.md
-!composer.json
-
-# track favicon files, if they exist
-!android-chrome-*.png
-!apple-touch-icon*.png
-!browserconfig.xml
-!favicon*.png
-!favicon*.ico
-!manifest.json
-!mstile-*.png
-!safari-pinned-tab.svg
