@@ -226,13 +226,13 @@ h1, h2, h3, h4, h5, h6, .read-next span {
 }
 
 h1 {
-	font-size: var(--wp--preset--font-size--xx-large);
+	font-size: var(--wp--preset--font-size--x-large);
 	margin: 1em 0;
 	line-height: 1.3;
 }
 
 .h1 {
-	font-size: var(--wp--preset--font-size--xx-large);
+	font-size: var(--wp--preset--font-size--x-large);
 }
 
 .page-title {
