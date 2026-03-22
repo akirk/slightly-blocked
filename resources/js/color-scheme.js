@@ -10,8 +10,20 @@ const { callbacks, state } = store('slightly/color-scheme', {
 	},
 	actions: {
 		toggle() {
-			state.isDark = !state.isDark;
-			state.colorScheme = state.isDark ? 'dark' : 'light';
+			// Cycle through: auto → light → dark → auto
+			if (state.isAuto) {
+				state.colorScheme = 'light';
+				state.isDark = false;
+				state.isAuto = false;
+			} else if (state.isDark) {
+				state.colorScheme = 'auto';
+				state.isDark = prefersDarkScheme.matches;
+				state.isAuto = true;
+			} else {
+				state.colorScheme = 'dark';
+				state.isDark = true;
+				state.isAuto = false;
+			}
 
 			if (state.isLoggedIn) {
 				wp.apiFetch({
@@ -34,21 +46,33 @@ const { callbacks, state } = store('slightly/color-scheme', {
 	},
 	callbacks: {
 		init() {
-			if ('dark' === state.colorScheme || 'light' === state.colorScheme) {
+			if ('dark' === state.colorScheme) {
+				state.isDark = true;
+				state.isAuto = false;
 				return;
 			}
 
+			if ('light' === state.colorScheme) {
+				state.isDark = false;
+				state.isAuto = false;
+				return;
+			}
+
+			// Auto mode: follow system preference
 			state.isDark = prefersDarkScheme.matches;
+			state.isAuto = true;
 		},
 		updateScheme() {
 			document.documentElement.style.setProperty(
 				'color-scheme',
-				state.colorScheme
+				state.isAuto ? 'light dark' : state.colorScheme
 			);
 		}
 	}
 });
 
 prefersDarkScheme.addEventListener('change', () => {
-	callbacks.init();
+	if (state.isAuto) {
+		state.isDark = prefersDarkScheme.matches;
+	}
 });

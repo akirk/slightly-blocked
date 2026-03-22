@@ -53,7 +53,7 @@ function slightly_scripts() {
 add_action( 'init', 'slightly_register_user_meta' );
 
 function slightly_register_user_meta() {
-	$sanitize = fn( $value ) => in_array( $value, [ 'light', 'dark' ], true ) ? $value : '';
+	$sanitize = fn( $value ) => in_array( $value, [ 'light', 'dark', 'auto' ], true ) ? $value : '';
 
 	register_meta( 'user', 'slightly-color-scheme', array(
 		'label'             => __( 'Color Scheme', 'slightly-blocked' ),
@@ -71,7 +71,7 @@ function slightly_register_user_meta() {
  */
 function slightly_get_color_scheme() {
 	$key           = 'slightly-color-scheme';
-	$valid_schemes = array( 'light', 'dark' );
+	$valid_schemes = array( 'light', 'dark', 'auto' );
 
 	if ( is_user_logged_in() ) {
 		$scheme = get_user_meta( get_current_user_id(), $key, true );
@@ -89,7 +89,7 @@ function slightly_get_color_scheme() {
 		}
 	}
 
-	return 'light dark';
+	return 'auto';
 }
 
 /**
@@ -101,6 +101,7 @@ function slightly_is_dark_scheme() {
 	return match ( $scheme ) {
 		'dark'  => true,
 		'light' => false,
+		'auto'  => null,
 		default => null,
 	};
 }
@@ -142,6 +143,7 @@ function slightly_render_button( string $content, array $block ) {
 		'data-wp-watch'                 => 'callbacks.updateScheme',
 		'data-wp-bind--aria-pressed'    => 'state.isDark',
 		'data-wp-class--is-dark-scheme' => 'state.isDark',
+		'data-wp-class--is-auto-scheme' => 'state.isAuto',
 	);
 
 	foreach ( $attr as $name => $value ) {
@@ -149,9 +151,11 @@ function slightly_render_button( string $content, array $block ) {
 	}
 
 	// Set the initial interactivity state.
+	$scheme = slightly_get_color_scheme();
 	wp_interactivity_state( 'slightly/color-scheme', array(
-		'colorScheme'  => slightly_get_color_scheme(),
+		'colorScheme'  => $scheme,
 		'isDark'       => slightly_is_dark_scheme(),
+		'isAuto'       => 'auto' === $scheme,
 		'userId'       => get_current_user_id(),
 		'name'         => 'slightly-color-scheme',
 		'cookiePath'   => COOKIEPATH,
