@@ -1066,6 +1066,26 @@ textarea#comment {
 	& h2 {
 		margin-bottom: 0;
 	}
+
+	& .wp-block-post-navigation-link {
+		font-size: var(--wp--preset--font-size--large);
+		line-height: 1.2;
+		font-weight: bold;
+
+		& a {
+			border-bottom: none;
+			text-decoration: underline;
+			text-decoration-color: var(--wp--preset--color--border);
+			text-underline-offset: 4px;
+			text-decoration-thickness: 2px;
+			transition: text-decoration-color 0.2s ease-out;
+
+			&:hover {
+				border-bottom: none;
+				text-decoration-color: var(--wp--preset--color--contrast-3);
+			}
+		}
+	}
 }
 
 .entry-title {
