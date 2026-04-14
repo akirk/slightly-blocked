@@ -1093,22 +1093,11 @@ textarea#comment {
 	margin: 0;
 }
 
-.wp-block-post-title a, .entry-title a {
-	border-bottom: none;
-	text-decoration: underline;
-	text-decoration-color: var(--wp--preset--color--border);
-	text-underline-offset: 4px;
-	text-decoration-thickness: 2px;
-	transition: text-decoration-color 0.2s ease-out;
-
-	&::after {
-		display: none;
-	}
-
-	&:hover {
-		border-bottom: none;
-		text-decoration-color: var(--wp--preset--color--contrast-3);
-	}
+.entry-content .wp-block-post-title a,
+.entry-content .entry-title a,
+.wp-block-post-title a,
+.entry-title a {
+	text-decoration: none;
 }
 
 .entry-content ul, .entry-content ol {
