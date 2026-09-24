@@ -417,6 +417,7 @@ p:not(.site-title) a,
 span a,
 .nav-previous a,
 .nav-next a,
+.editor-styles-wrapper a,
 .entry-content a {
 	position: relative;
 	border-bottom: 2px solid var(--wp--preset--color--border);
