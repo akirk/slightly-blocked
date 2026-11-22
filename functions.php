@@ -48,6 +48,20 @@ function slightly_scripts() {
 }
 
 /**
+ * Give tag archives a useful page size while retaining the inherited query.
+ */
+add_action( 'pre_get_posts', 'slightly_tag_archive_page_size' );
+
+function slightly_tag_archive_page_size( $query ) {
+	if ( is_admin() || ! $query->is_main_query() || ! $query->is_tag() || $query->is_feed() ) {
+		return;
+	}
+
+	$query->set( 'posts_per_page', 10 );
+	$query->set( 'posts_per_archive_page', 10 );
+}
+
+/**
  * Register user meta for color scheme preference.
  */
 add_action( 'init', 'slightly_register_user_meta' );
